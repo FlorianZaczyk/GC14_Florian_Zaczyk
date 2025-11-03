@@ -2,12 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class _2PlayerController : MonoBehaviour
 {
     #region Insepctor Variables
 
     [SerializeField] private float walkingSpeed;
-    public EnemyScript enemy1;
     #endregion
 
     #region Private Variables
@@ -67,16 +66,16 @@ public class PlayerController : MonoBehaviour
 
         if (_moveInput.x > 0)
         {
-            //right
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else
         {
-            //left
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+        
     }
 
     #endregion
     
     
 }
-
