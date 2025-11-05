@@ -703,12 +703,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkingSpeed: 5
   _runningSpeed: 7
-  _jumpPower: 3
-  boxSize: {x: 0, y: 0}
-  boxOffset: {x: 0, y: 0}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &2126110606
 GameObject:
   m_ObjectHideFlags: 0
