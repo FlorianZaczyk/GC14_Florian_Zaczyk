@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private float _moveSpeed = 5f;
     private bool _isGrounded;
     private bool isFacingRight = true;
+    private Animator _anim;
+
 
     #endregion
 
@@ -54,6 +56,7 @@ public class PlayerController : MonoBehaviour
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
         _player = GetComponent<Transform>();
+        _anim = GetComponent<Animator>();
 
 
         _moveSpeed = _walkingSpeed;
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.linearVelocityX = _moveInput.x * _walkingSpeed;
+        //_rb.linearVelocityX = new Vector2(_moveInput.x * _walkingSpeed, _rb.linearVelocity.y);
 
     if (_groundCheck != null)
     {
@@ -91,6 +95,9 @@ public class PlayerController : MonoBehaviour
     {
         _isGrounded = false;
     }
+    
+    float speed = Mathf.Abs(_moveInput.x); 
+    _anim.SetFloat("MovementValue", speed);
     }
 
 
