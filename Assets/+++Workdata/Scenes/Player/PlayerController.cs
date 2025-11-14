@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public static readonly int Hash_MovementValue = Animator.StringToHash("MovementValue");
+    public static readonly int Hash_GroundValue = Animator.StringToHash("isGrounded");
+    
     #region Insepctor Variables
 
 // Alle Variabeln die im Inspektor zu sehen sind. 
@@ -24,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _sr;
     private float _moveSpeed = 5f;
     private bool _isGrounded;
-    private bool isFacingRight = true;
+    //private bool isFacingRight = true;
     private Animator _anim;
 
 
@@ -96,8 +99,8 @@ public class PlayerController : MonoBehaviour
         _isGrounded = false;
     }
     
-    float speed = Mathf.Abs(_moveInput.x); 
-    _anim.SetFloat("MovementValue", speed);
+    //float _moveSpeed = Mathf.Abs(_moveInput.x); 
+    //_anim.SetFloat("MovementValue", _moveSpeed);
     }
 
 
@@ -134,6 +137,16 @@ private void OnDisable()
         {
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
         }
+    }
+    
+    #endregion
+    
+    #region Animation Methods
+
+    void UpdateAnimator()
+    {
+        _anim.SetFloat(Hash_MovementValue,Mathf.Abs(_rb.linearVelocity.x));
+        _anim.SetBool(Hash_GroundValue, _isGrounded);
     }
     
     #endregion
