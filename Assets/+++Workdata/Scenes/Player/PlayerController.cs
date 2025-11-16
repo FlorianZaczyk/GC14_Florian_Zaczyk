@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public static readonly int Hash_MovementValue = Animator.StringToHash("MovementValue");
     public static readonly int Hash_GroundValue = Animator.StringToHash("isGrounded");
+    public static readonly int Hash_JumpValue = Animator.StringToHash("isJumping");
     
     #region Insepctor Variables
 
