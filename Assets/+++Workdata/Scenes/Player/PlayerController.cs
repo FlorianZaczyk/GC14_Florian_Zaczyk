@@ -1,13 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public static readonly int Hash_MovementValue = Animator.StringToHash("MovementValue");
     public static readonly int Hash_GroundValue = Animator.StringToHash("isGrounded");
     public static readonly int Hash_JumpValue = Animator.StringToHash("isJumping");
-    
+
     #region Insepctor Variables
 
 // Alle Variabeln die im Inspektor zu sehen sind. 
@@ -27,7 +28,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
     private float _moveSpeed = 5f;
+
     private bool _isGrounded;
+
     //private bool isFacingRight = true;
     private Animator _anim;
 
@@ -54,6 +57,8 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Unity Event Funktion
+
+    //Debug.Log("Mouse clicked");
 
     private void Awake()
     {
@@ -82,6 +87,7 @@ public class PlayerController : MonoBehaviour
         _moveAction.performed += Move;
         _moveAction.canceled += Move;
         _jumpAction.performed += Jump;
+        _attackAction.performed += Attack;
 
     }
 
@@ -90,46 +96,50 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocityX = _moveInput.x * _walkingSpeed;
         //_rb.linearVelocityX = new Vector2(_moveInput.x * _walkingSpeed, _rb.linearVelocity.y);
 
-    if (_groundCheck != null)
-    {
-        _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _groundLayer);
+        if (_groundCheck != null)
+        {
+            _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _groundLayer);
+        }
+
+        else
+        {
+            _isGrounded = false;
+        }
+
+        //float _moveSpeed = Mathf.Abs(_moveInput.x); 
+        //_anim.SetFloat("MovementValue", _moveSpeed);
+
+        UpdateAnimator();
     }
 
-    else
-    {
-        _isGrounded = false;
-    }
-    
-    //float _moveSpeed = Mathf.Abs(_moveInput.x); 
-    //_anim.SetFloat("MovementValue", _moveSpeed);
-    }
 
-
-private void OnDisable()
+    private void OnDisable()
     {
         _inputActions.Disable();
         _moveAction.performed -= Move;
-        _moveAction.canceled -= Move; 
+        _moveAction.canceled -= Move;
         _jumpAction.performed -= Jump;
+        _attackAction.performed -= Attack;
 
     }
 
     #endregion
 
     #region Input
+
     private void Move(InputAction.CallbackContext ctx)
     {
         _moveInput = ctx.ReadValue<Vector2>();
-        
+
         if (_moveInput.x > 0)
-        { 
+        {
             _player.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (_moveInput.x < 0)
-        { 
+        {
             _player.rotation = Quaternion.Euler(0, 180, 0);
         }
-        
+
     }
 
     private void Jump(InputAction.CallbackContext ctx)
@@ -139,17 +149,26 @@ private void OnDisable()
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
         }
     }
-    
-    #endregion
-    
-    #region Animation Methods
 
-    void UpdateAnimator()
+    void Attack(InputAction.CallbackContext ctx)
     {
-        _anim.SetFloat(Hash_MovementValue,Mathf.Abs(_rb.linearVelocity.x));
-        _anim.SetBool(Hash_GroundValue, _isGrounded);
+        Debug.Log("mouse clicked");
+        _anim.SetInteger("Actionid",10);
+        _anim.SetTrigger("ActionTrigger" );
     }
-    
+
     #endregion
-  
-}
+
+
+
+        #region Animation Methods
+
+        void UpdateAnimator()
+        {
+            _anim.SetFloat(Hash_MovementValue, Mathf.Abs(_rb.linearVelocity.x));
+            _anim.SetBool(Hash_GroundValue, _isGrounded);
+        }
+
+        #endregion
+
+    }
