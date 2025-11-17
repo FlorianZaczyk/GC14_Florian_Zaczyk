@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
     void Attack(InputAction.CallbackContext ctx)
     {
         Debug.Log("mouse clicked");
-        _anim.SetInteger("Actionid",10);
+        _anim.SetInteger("ActionID",10);
         _anim.SetTrigger("ActionTrigger" );
     }
 
