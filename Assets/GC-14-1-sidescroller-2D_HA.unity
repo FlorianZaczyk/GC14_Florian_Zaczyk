@@ -28694,7 +28694,7 @@ GameObject:
   - component: {fileID: 1558333753}
   - component: {fileID: 1558333752}
   - component: {fileID: 1558333757}
-  - component: {fileID: 1558333758}
+  - component: {fileID: 1558333759}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -28859,7 +28859,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.006162554, y: 0.67292136}
   m_Size: {x: 0.46559983, y: 1.2894593}
   m_Direction: 0
---- !u!114 &1558333758
+--- !u!114 &1558333759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28873,12 +28873,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkingSpeed: 9
   _runningSpeed: 7
+  _isSprinting: 0
+  _sprintSpeed: 12
   _jumpForce: 14
   _groundCheck: {fileID: 1866330989}
   _groundCheckRadius: 0.2
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  boxOffset: {x: 0, y: 0}
 --- !u!1 &1764787205
 GameObject:
   m_ObjectHideFlags: 0
