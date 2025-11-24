@@ -28871,6 +28871,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abfcf21e697d774a91061e0e9d43bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovementState: 0
+  playerActionState: 0
+  playerDirectionState: 0
   _walkingSpeed: 9
   _runningSpeed: 7
   _isSprinting: 0

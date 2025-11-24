@@ -1,16 +1,27 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum PlayerMovementState { Idle, Move }
+    public PlayerMovementState playerMovementState;
+
+    public enum PlayerActionState { Default, Attack, Jumping, Dashing, Climbing, JumpAttack }
+    public PlayerActionState playerActionState;
+    
+    public enum PlayerDirectionState{Right, Left}
+    public PlayerDirectionState playerDirectionState;
+    
     public static readonly int Hash_MovementValue = Animator.StringToHash("MovementValue");
     public static readonly int Hash_GroundValue = Animator.StringToHash("isGrounded");
     public static readonly int Hash_JumpValue = Animator.StringToHash("isJumping");
-    private static readonly int Hash_Actionid = Animator.StringToHash("ActionId");
+    private static readonly int Hash_Actionid = Animator.StringToHash("ActionID");
     private static readonly int Hash_ActionTrigger = Animator.StringToHash("ActionTrigger");
     private static readonly int Hash_HoldingMouse = Animator.StringToHash("HoldingMouse");
+    
     
     #region Insepctor Variables
 
@@ -87,9 +98,20 @@ public class PlayerController : MonoBehaviour
         _crouchAction = _inputActions.Player.Crouch;
         _sprintAction = _inputActions.Player.Sprint;
 
+        
+        playerActionState = PlayerActionState.Default;
 
+        if (playerDirectionState == PlayerDirectionState.Right)
+        {
+            _player.rotation = Quaternion.Euler(0, 0, 0); 
+        }
+        else if (playerDirectionState == PlayerDirectionState.Left)
+        {
+            _player.rotation = Quaternion.Euler(0, 180, 0);  
+        }
     }
-
+    
+    
     private void OnEnable()
     {
         _inputActions.Enable();
@@ -149,11 +171,30 @@ public class PlayerController : MonoBehaviour
 
         if (_moveInput.x > 0)
         {
-            _player.rotation = Quaternion.Euler(0, 0, 0);
+            SetDirection(PlayerDirectionState.Right);
         }
         else if (_moveInput.x < 0)
         {
-            _player.rotation = Quaternion.Euler(0, 180, 0);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            SetDirection(PlayerDirectionState.Left);
+        }
+
+        if (_moveInput.x == 0)
+        {
+            playerMovementState = PlayerMovementState.Idle;
+        }
+        else
+        {
+            playerMovementState = PlayerMovementState.Move;
+        }
+
+        if (_moveInput.x > 0)
+        {
+            playerDirectionState = PlayerDirectionState.Right;
+        }
+        else
+        {
+            playerDirectionState = PlayerDirectionState.Left;
         }
 
     }
@@ -177,9 +218,10 @@ public class PlayerController : MonoBehaviour
     
     void Attack(InputAction.CallbackContext ctx)
     {
-        Debug.Log("mouse clicked");
-        _anim.SetInteger("ActionID",10);
-        _anim.SetTrigger("ActionTrigger" );
+        if (playerActionState == PlayerActionState.Attack) return;
+        playerActionState = PlayerActionState.Attack;
+        AnimationSetActionId(10);
+        
         _isHoldingMouse = true;
         _anim.SetBool(Hash_HoldingMouse,true);
     }
@@ -205,6 +247,11 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    private void AttackEndAnimation()
+    {
+        playerActionState = PlayerActionState.Default;
+    }
+    
 
 
         #region Animation Methods
@@ -224,4 +271,26 @@ public class PlayerController : MonoBehaviour
 
         #endregion
 
+        #region Utility
+
+        #region Utility
+
+        private void SetDirection(PlayerDirectionState newPlayerDirectionState)
+        {
+            playerDirectionState = newPlayerDirectionState;
+
+            if (playerDirectionState == PlayerDirectionState.Left)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+
+        #endregion
+
+
+        #endregion
     }
