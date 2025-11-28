@@ -1,29 +1,28 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-   public float StartingHealth = 100f;
+   public float health;
+   public float maxHealth;
+   public Image healthBar;
 
-   public float HealthPoints
+   void Start()
    {
-       get { return _HealthPoints; }
-       set
-       {
-           _HealthPoints = Mathf.Clamp(value, 0f, 100f);
-
-           if (_HealthPoints <= 0f)
-           {
-               //dead
-           }
-       }
+      maxHealth = health;
    }
    
-   [SerializeField]
-   private float _HealthPoints = 100f;
+   void Update()
+   {
+      healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0 ,1);
+
+      if (healthBar.fillAmount <= 0)
+      {
+         Destroy(gameObject);
+      }
+   }
    
-    void Start()
-    {
-        HealthPoints = StartingHealth;
-    }
 }
