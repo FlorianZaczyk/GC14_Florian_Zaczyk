@@ -368,7 +368,7 @@ Transform:
   m_GameObject: {fileID: 284306229}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.96, y: 1.05, z: -0.05819661}
+  m_LocalPosition: {x: 10.96, y: 1.23, z: -0.05819661}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9582,7 +9582,7 @@ Transform:
   m_GameObject: {fileID: 579954387}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.98, y: 0.97, z: -0.05819661}
+  m_LocalPosition: {x: 20.96, y: 1.1, z: -0.05819661}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29164,13 +29164,13 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
+  m_Offset: {x: -0.1790877, y: -0.15572779}
+  m_Size: {x: 2.2493715, y: 0.69725734}
+  m_Direction: 1
 --- !u!114 &764907584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29194,11 +29194,11 @@ GameObject:
   - component: {fileID: 1029619206}
   - component: {fileID: 1029619203}
   - component: {fileID: 1029619211}
-  - component: {fileID: 1029619201}
-  - component: {fileID: 1029619212}
   - component: {fileID: 1029619209}
   - component: {fileID: 1029619208}
   - component: {fileID: 1029619207}
+  - component: {fileID: 1029619212}
+  - component: {fileID: 1029619213}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -29206,21 +29206,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1029619201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029619200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96c1f073ea941c942a6bfc1801faadef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointA: {fileID: 284306229}
-  pointB: {fileID: 579954387}
-  speed: 0
 --- !u!50 &1029619203
 Rigidbody2D:
   serializedVersion: 5
@@ -29291,6 +29276,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4233e965e7bbd04b92d0c3bf5de56e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallCheck: {fileID: 2060053261}
+  groundCheck: {fileID: 764417520}
+  wallCheckDistance: 0.2
+  groundCheckDistance: 0.2
+  groundAndWallMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1029619209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29303,6 +29295,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 555e80f038ea015418e429aee5021a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMovementState: 0
+  enemyActionState: 0
+  isFacingRight: 1
+  movementSpeed: 1
+  attackDistance: 1
+  _chaseTarget: {fileID: 0}
 --- !u!70 &1029619211
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -29349,7 +29347,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1029619200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a6731285479e74cb1e5cb312a1126e, type: 3}
+  m_Script: {fileID: 11500000, guid: 96c1f073ea941c942a6bfc1801faadef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointA: {fileID: 284306229}
+  pointB: {fileID: 579954387}
+  speed: 3
+--- !u!114 &1029619213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029619200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf6f93d20024284980158b9126261e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1277176802

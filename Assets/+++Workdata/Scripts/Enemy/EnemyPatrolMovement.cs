@@ -49,7 +49,7 @@ public class EnemyPatrolMovement : MonoBehaviour
     {
         if (enemyActionState != EnemyActionState.Default) return;
 
-        if (enemyActionState == EnemyActionState.Chase)
+        if (enemyMovementState == EnemyMovementState.Chase)
         {
             if (_chaseTarget == null)
             {
@@ -127,7 +127,7 @@ public class EnemyPatrolMovement : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        _enemyAnimation.AnimationSetMovementValue(Mathf.Abs(_rb.linearVelocityX));
+      //  _enemyAnimation.AnimationSetMovementValue(Mathf.Abs(_rb.linearVelocityX));
     }
     
     #endregion

@@ -8,15 +8,15 @@ public class EnemyInformation : MonoBehaviour
     
     public float _currentLifePoints;
     
-    //private ColorSpriteSetter _colorSpriteSetter;
+    private ColorSpriteSetter _colorSpriteSetter;
     private Collider2D _coll;
     private Rigidbody2D _rb;
 
     void Awake()
     {
         _currentLifePoints = enemyMaxLifePoints;
-
-       // _colorSpriteSetter = GetComponent<ColorSpriteSetter>();
+        
+        _colorSpriteSetter = GetComponent<ColorSpriteSetter>();
         _coll = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -35,7 +35,6 @@ public class EnemyInformation : MonoBehaviour
             GetComponentInChildren<EnemyPatrolMovement>().enemyActionState(2);
             enemyPatrol.enabled = false;
         }
-
-       // _colorSpriteSetter.ColorObject();
+        _colorSpriteSetter.ColorObject();
     }
 }
