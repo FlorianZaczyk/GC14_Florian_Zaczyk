@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
 
     private bool _isGrounded;
     private bool _isHoldingMouse;
+
+    private OneWayChecker _oneWayChecker;
     
     //private bool isFacingRight = true;
     private Animator _anim;
@@ -86,6 +88,7 @@ public class PlayerController : MonoBehaviour
         _sr = GetComponent<SpriteRenderer>();
         _player = GetComponent<Transform>();
         _anim = GetComponent<Animator>();
+        _oneWayChecker = GetComponentInChildren<OneWayChecker>();
 
 
         _moveSpeed = _walkingSpeed;
@@ -146,7 +149,7 @@ public class PlayerController : MonoBehaviour
         //float _moveSpeed = Mathf.Abs(_moveInput.x); 
         //_anim.SetFloat("MovementValue", _moveSpeed);
 
-        UpdateAnimator();
+        UpdateAnimator(); 
     }
 
 
@@ -179,6 +182,12 @@ public class PlayerController : MonoBehaviour
             SetDirection(PlayerDirectionState.Left);
         }
 
+        if (_moveInput.y < 0)
+        {
+            _oneWayChecker.DisableOneWayCollider();
+        }
+        
+        
         if (_moveInput.x == 0)
         {
             playerMovementState = PlayerMovementState.Idle;
@@ -196,7 +205,6 @@ public class PlayerController : MonoBehaviour
         {
             playerDirectionState = PlayerDirectionState.Left;
         }
-
     }
 
     private void Jump(InputAction.CallbackContext ctx)

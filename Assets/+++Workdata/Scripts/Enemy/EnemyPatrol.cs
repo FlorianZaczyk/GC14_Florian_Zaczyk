@@ -33,9 +33,9 @@ public class EnemyPatrol : MonoBehaviour
     void Update()
     {
         if (currentPoint == pointB)
-            _rb.velocity = new Vector2(speed, 0);
+            _rb.linearVelocity = new Vector2(speed, 0);
         else
-            _rb.velocity = new Vector2(-speed, 0);
+            _rb.linearVelocity = new Vector2(-speed, 0);
 
         // Prüfen, ob Enemy den Punkt erreicht hat
         if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
