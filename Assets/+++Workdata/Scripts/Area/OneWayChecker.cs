@@ -6,7 +6,6 @@ public class OneWayChecker : MonoBehaviour
     private Collider2D _oneWayPlatform;
     
     public string tagName = "OneWay";
-    public float enableTimer = 1;
     private void OnTriggerEnter2D(Collider2D other)
     {
         print(other.name);
@@ -20,7 +19,7 @@ public class OneWayChecker : MonoBehaviour
     {
         if (other.CompareTag(tagName))
         {
-           // _oneWayPlatform = null;
+            _oneWayPlatform = null;
         }
     }
 
@@ -30,12 +29,6 @@ public class OneWayChecker : MonoBehaviour
 
         _oneWayPlatform.enabled = false;
         
-        _oneWayPlatform.GetComponent<ColliderReset>().EnableCollider();
-    }
-
-    private void EnableOneWayCollider()
-    {
-        _oneWayPlatform.enabled = true;
-        _oneWayPlatform = null;
+        _oneWayPlatform.GetComponent<OneWayPlatformBehaviour>().EnableCollider();
     }
 }
