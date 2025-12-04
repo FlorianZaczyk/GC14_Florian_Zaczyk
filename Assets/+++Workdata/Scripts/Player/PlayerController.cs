@@ -46,15 +46,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
     private float _moveSpeed = 5f;
+    private float _bounceForce = 15f;
+    
 
     private bool _isGrounded;
     private bool _isHoldingMouse;
 
-    private OneWayChecker _oneWayChecker;
+     //private OneWayChecker _oneWayChecker;
     
     //private bool isFacingRight = true;
     private Animator _anim;
-
+    private PlayerPlatformHandler _playerPlatformHandler;
+    private DamagePush _damagePush;
 
     #endregion
 
@@ -88,7 +91,9 @@ public class PlayerController : MonoBehaviour
         _sr = GetComponent<SpriteRenderer>();
         _player = GetComponent<Transform>();
         _anim = GetComponent<Animator>();
-        _oneWayChecker = GetComponentInChildren<OneWayChecker>();
+        _playerPlatformHandler = GetComponent<PlayerPlatformHandler>();
+        _damagePush = GetComponent<DamagePush>();
+        //_oneWayChecker = GetComponentInChildren<OneWayChecker>();
 
 
         _moveSpeed = _walkingSpeed;
@@ -184,7 +189,8 @@ public class PlayerController : MonoBehaviour
 
         if (_moveInput.y < 0)
         {
-            _oneWayChecker.DisableOneWayCollider();
+            _playerPlatformHandler.TryDisableOneWayEffector();
+           // s pressed
         }
         
         
@@ -215,6 +221,15 @@ public class PlayerController : MonoBehaviour
             _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
             _anim.SetTrigger(Hash_JumpValue);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("ForcePush"))
+        {
+            _rb.AddForce(Vector2.up * _bounceForce, ForceMode2D.Impulse);
+        }
+        //_damagePush.ForcePush();
     }
 
     private void Sprint(InputAction.CallbackContext ctx)

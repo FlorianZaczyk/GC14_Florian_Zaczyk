@@ -15,12 +15,13 @@ public class Damage : MonoBehaviour
     {
         
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-           other.gameObject.GetComponent<Health>().health -= damage;
+            other.gameObject.GetComponent<Health>().health -= damage;
         }
     }
+    
 }
