@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/+++Workdata/Scenes/New Folder/PreLoadMenu.unity
+    path: Assets/+++Workdata/Scenes/Game/PreLoadMenu.unity
     guid: 9ff320f5571037649824959832586e3b
   - enabled: 1
-    path: Assets/+++Workdata/Scenes/New Folder/MainMenu.unity
-    guid: 628979c9bf1f2854fb648117c1e7302b
+    path: Assets/+++Workdata/Scenes/Game/MainMenuNEW.unity
+    guid: 768236f1abd157f4d8871e34fee68dfd
   - enabled: 1
-    path: Assets/+++Workdata/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/+++Workdata/Scenes/Game/GC-14-1-sidescroller-2D_HA.unity
+    guid: 88842bd0cbeef4a4da120b14a60a95a2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

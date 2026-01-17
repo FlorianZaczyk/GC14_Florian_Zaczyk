@@ -7,6 +7,7 @@ public class MainMenu_UiManager : MonoBehaviour
     public GameObject mainMenuContainer;
     public GameObject loadMenuContainer;
     public GameObject optionsMenuContainer;
+    public GameObject pauseMenuContainer;
     
     public GameObject _currentMenu;
 
@@ -34,7 +35,16 @@ public class MainMenu_UiManager : MonoBehaviour
     public void OpenOptionsMenu()
     {
         _currentMenu.SetActive(false);
+        
         optionsMenuContainer.SetActive(true);
         _currentMenu = optionsMenuContainer;
+    }
+    
+    public void OpenPauseMenu()
+    {
+        _currentMenu.SetActive(false);
+        
+        pauseMenuContainer.SetActive(true);
+        _currentMenu = pauseMenuContainer;
     }
 }

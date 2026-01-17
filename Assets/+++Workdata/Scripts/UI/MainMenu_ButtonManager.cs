@@ -20,6 +20,11 @@ public class MainMenu_ButtonManager : MonoBehaviour
         uiManager.OpenOptionsMenu();
     }
 
+    public void Button_OpenPauseMenu()
+    {
+        uiManager.OpenPauseMenu();
+    }
+    
     public void Button_LoadSceneByName(string sceneName)
     {
         sceneLoaderManager.LoadScene(sceneName);
