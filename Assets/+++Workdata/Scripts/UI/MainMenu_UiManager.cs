@@ -8,12 +8,18 @@ public class MainMenu_UiManager : MonoBehaviour
     public GameObject loadMenuContainer;
     public GameObject optionsMenuContainer;
     public GameObject pauseMenuContainer;
-    
+    public GameObject audioOptionsMenuContainer;
     public GameObject _currentMenu;
+    
+    public bool soundOn = true;
+    public AudioSource uiAudioSource;
+
 
     private void Awake()
     {
         _currentMenu = mainMenuContainer;
+        soundOn = false;
+        uiAudioSource.mute = soundOn;
     }
 
     
@@ -41,11 +47,25 @@ public class MainMenu_UiManager : MonoBehaviour
         _currentMenu = optionsMenuContainer;
     }
     
+    public void OpenAudioOptionsMenu()
+    {
+        _currentMenu.SetActive(false);
+        
+        audioOptionsMenuContainer.SetActive(true);
+        _currentMenu = audioOptionsMenuContainer;
+    }
+    
     public void OpenPauseMenu()
     {
         _currentMenu.SetActive(false);
         
         pauseMenuContainer.SetActive(true);
         _currentMenu = pauseMenuContainer;
+    }
+    
+    public void ToggleSound()
+    {
+        soundOn = !soundOn;
+        uiAudioSource.mute = soundOn;
     }
 }

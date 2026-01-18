@@ -20,6 +20,11 @@ public class MainMenu_ButtonManager : MonoBehaviour
         uiManager.OpenOptionsMenu();
     }
 
+    public void OpenAudioOptionsMenu()
+    {
+       uiManager.OpenAudioOptionsMenu();
+    }
+    
     public void Button_OpenPauseMenu()
     {
         uiManager.OpenPauseMenu();
@@ -35,5 +40,9 @@ public class MainMenu_ButtonManager : MonoBehaviour
         sceneLoaderManager.LoadScene(index);
 
     }
-    
+
+    public void Button_ToggleSound()
+    {
+        uiManager.ToggleSound();
+    }
 }
