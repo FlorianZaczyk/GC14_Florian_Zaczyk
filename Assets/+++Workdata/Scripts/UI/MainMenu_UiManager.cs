@@ -16,6 +16,7 @@ public class MainMenu_UiManager : MonoBehaviour
         _currentMenu = mainMenuContainer;
     }
 
+    
     public void OpenLoadMenu()
     {
         _currentMenu.SetActive(false);
