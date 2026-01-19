@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
    public float health;
    public float maxHealth;
    public Image healthBar;
+   public GameObject gameOverScreenContainer;
 
    void Start()
    {
@@ -22,7 +23,16 @@ public class Health : MonoBehaviour
       if (healthBar.fillAmount <= 0)
       {
          Destroy(gameObject);
+         OpenGameOverScreen();
+         
       }
+   }
+   
+   private void OpenGameOverScreen()
+   {
+     
+      gameOverScreenContainer.SetActive(true);
+     
    }
    
 }

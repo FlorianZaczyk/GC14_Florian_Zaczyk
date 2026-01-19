@@ -9,6 +9,7 @@ public class MainMenu_UiManager : MonoBehaviour
     public GameObject optionsMenuContainer;
     public GameObject pauseMenuContainer;
     public GameObject audioOptionsMenuContainer;
+    public GameObject gameOverScreenContainer;
     public GameObject _currentMenu;
     
     public bool soundOn = true;
@@ -63,6 +64,13 @@ public class MainMenu_UiManager : MonoBehaviour
         _currentMenu = pauseMenuContainer;
     }
     
+    public void OpenGameOverScreen()
+    {
+        _currentMenu.SetActive(false);
+        
+        gameOverScreenContainer.SetActive(true);
+        _currentMenu = gameOverScreenContainer;
+    }
     public void ToggleSound()
     {
         soundOn = !soundOn;

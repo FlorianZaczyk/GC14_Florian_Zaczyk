@@ -30,6 +30,11 @@ public class MainMenu_ButtonManager : MonoBehaviour
         uiManager.OpenPauseMenu();
     }
     
+    public void OpenGameOverScreen()
+    {
+        uiManager.OpenGameOverScreen();
+    }
+    
     public void Button_LoadSceneByName(string sceneName)
     {
         sceneLoaderManager.LoadScene(sceneName);

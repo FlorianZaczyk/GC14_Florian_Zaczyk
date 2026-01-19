@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     private bool _isPaused;
     
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -20,6 +22,7 @@ public class PauseMenu : MonoBehaviour
             }
 
         }
+        
     }
 
     private void OpenPauseMenu()
@@ -30,7 +33,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-
+    
     public void ResumeGame()
     {
         _isPaused = false;
