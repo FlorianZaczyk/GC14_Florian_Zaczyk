@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public enum PlayerMovementState { Idle, Move }
     public PlayerMovementState playerMovementState;
 
-    public enum PlayerActionState { Default, Attack, Jumping, Dashing, Climbing, JumpAttack }
+    public enum PlayerActionState { Default, Attack, SecondAttack, Jumping, Dashing, Climbing, JumpAttack }
     public PlayerActionState playerActionState;
     
     public enum PlayerDirectionState{Right, Left}
@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour
 // Alle Variabeln die im Inspektor zu sehen sind. 
     [SerializeField] private float _walkingSpeed = 5f;
     [SerializeField] private float _runningSpeed = 7f;
+    
+    [SerializeField] private float _dashSpeed = 14f;
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashCooldown;
+    
     public bool _isSprinting;
     public float _sprintSpeed;
     [SerializeField] private float _jumpForce = 7f;
@@ -47,8 +52,9 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _sr;
     private float _moveSpeed = 5f;
     private float _bounceForce = 15f;
-    
 
+    private bool _isDashing = false;
+    private bool _canDash = true;
     private bool _isGrounded;
     private bool _isHoldingMouse;
 
@@ -69,6 +75,7 @@ public class PlayerController : MonoBehaviour
     #region Private InputActions
 
     private InputAction _moveAction;
+    private InputAction _dashAction;
     private InputAction _jumpAction;
     private InputAction _attackAction;
     private InputAction _secondAttackAction;
@@ -106,6 +113,7 @@ public class PlayerController : MonoBehaviour
         _secondAttackAction = _inputActions.Player.SecondAttack;
         _crouchAction = _inputActions.Player.Crouch;
         _sprintAction = _inputActions.Player.Sprint;
+        _dashAction = _inputActions.Player.Dash;
 
         
         playerActionState = PlayerActionState.Default;
@@ -133,7 +141,8 @@ public class PlayerController : MonoBehaviour
         _attackAction.started += Attack;
         _attackAction.canceled += AttackReleased;
         _secondAttackAction.started += SecondAttack;
-        
+        _dashAction.performed += Dash;
+
 
     }
 
@@ -152,6 +161,11 @@ public class PlayerController : MonoBehaviour
             _isGrounded = false;
         }
 
+        if (!_isDashing)
+        {
+            _rb.linearVelocityX = _moveInput.x * _walkingSpeed;
+        }
+
         //float _moveSpeed = Mathf.Abs(_moveInput.x); 
         //_anim.SetFloat("MovementValue", _moveSpeed);
 
@@ -167,6 +181,7 @@ public class PlayerController : MonoBehaviour
         _jumpAction.performed -= Jump;
         _attackAction.performed -= Attack;
         _secondAttackAction.canceled -= SecondAttack;
+        _dashAction.performed -= Dash;
 
     }
 
@@ -214,6 +229,52 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Dash(InputAction.CallbackContext ctx)
+    {
+        if (!_canDash || _isDashing) return;
+        
+        _anim.SetInteger("ActionID", 3); //gleiche Zahl wie im Animator
+        _anim.SetTrigger("ActionTrigger"); //löst die StateMachine aus
+
+        StartCoroutine(PerformDash());
+    }
+
+    private System.Collections.IEnumerator PerformDash()
+    {
+        _isDashing = true;
+        _canDash = false;
+
+        playerActionState = PlayerActionState.Dashing;
+
+        float originalGravity = _rb.gravityScale;
+        _rb.gravityScale = 0; // Optional: kein Fall während Dash
+
+        float direction = transform.rotation.y == 0 ? 1f : -1f;
+
+        float timer = 0f;
+        while (timer < dashDuration)
+        {
+            _rb.linearVelocity = new Vector2(direction * _dashSpeed, 0);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // Stop Movement
+        _rb.linearVelocity = Vector2.zero;
+
+        _rb.gravityScale = originalGravity;
+
+        _isDashing = false;
+
+        // Nachdem Dash vorbei ist, wieder normaler Zustand
+        if (_isGrounded)
+            playerActionState = PlayerActionState.Default;
+
+        yield return new WaitForSeconds(dashCooldown);
+
+        _canDash = true;
+    }
+
     private void Jump(InputAction.CallbackContext ctx)
     {
         if (_isGrounded)
@@ -255,14 +316,20 @@ public class PlayerController : MonoBehaviour
         _anim.SetBool(Hash_HoldingMouse, false);
     }
 
-    
     private void SecondAttack(InputAction.CallbackContext ctx)
+    {
+        if (playerActionState == PlayerActionState.SecondAttack) return;
+        playerActionState = PlayerActionState.SecondAttack;
+        AnimationSetActionId(11);
+    }
+    
+   /* private void SecondAttack(InputAction.CallbackContext ctx)
     {
         Debug.Log("Mouse clicked");
         _anim.SetTrigger(Hash_ActionTrigger);
         _anim.SetInteger("ActionID", 11);
         
-    }
+    } */
     
     private void OnDrawGizmos()
     {

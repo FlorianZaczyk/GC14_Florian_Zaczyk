@@ -30287,7 +30287,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -30325,7 +30325,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029619200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 148882cc1da018e4a878c2efbe4b7456, type: 3}
   m_Name: 
@@ -30337,7 +30337,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029619200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4233e965e7bbd04b92d0c3bf5de56e2, type: 3}
   m_Name: 
@@ -30356,7 +30356,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029619200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 555e80f038ea015418e429aee5021a4d, type: 3}
   m_Name: 
@@ -30411,7 +30411,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029619200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c1f073ea941c942a6bfc1801faadef, type: 3}
   m_Name: 
@@ -30428,9 +30428,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1029619200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebf6f93d20024284980158b9126261e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 76ef72052a581514aa287382350ce064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
+  maxHealth: 3
+  speed: 1
+  player: {fileID: 1558333749}
+  healthBar: {fileID: 0}
 --- !u!1 &1179272279
 GameObject:
   m_ObjectHideFlags: 0
@@ -31758,6 +31763,9 @@ MonoBehaviour:
   playerDirectionState: 0
   _walkingSpeed: 9
   _runningSpeed: 7
+  _dashSpeed: 25
+  dashDuration: 0.15
+  dashCooldown: 0.5
   _isSprinting: 0
   _sprintSpeed: 12
   _jumpForce: 17
@@ -31821,7 +31829,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.3913043, y: 0.02272727}
-    oldSize: {x: 2.875, y: 1.8333334}
+    oldSize: {x: 4.3125, y: 2.75}
     newSize: {x: 2.875, y: 1.8333334}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
