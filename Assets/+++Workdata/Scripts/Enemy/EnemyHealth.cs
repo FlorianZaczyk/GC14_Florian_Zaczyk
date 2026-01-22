@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
         _distance = Vector2.Distance(transform.position, player.transform.position);
         Vector2 direction = player.transform.position - transform.position;
 
-        if (_distance <= 3f)
+        if (_distance <= 5f)
         {
             transform.position =
                 Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
