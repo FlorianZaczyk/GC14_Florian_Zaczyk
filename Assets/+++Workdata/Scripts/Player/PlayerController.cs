@@ -64,6 +64,8 @@ public class PlayerController : MonoBehaviour
     private Animator _anim;
     private PlayerPlatformHandler _playerPlatformHandler;
     private DamagePush _damagePush;
+    private PlayerInteractions _playerInteractions;
+    private InputAction _interactAction;
 
     #endregion
 
@@ -99,6 +101,7 @@ public class PlayerController : MonoBehaviour
         _sr = GetComponent<SpriteRenderer>();
         _player = GetComponent<Transform>();
         _anim = GetComponent<Animator>();
+        _playerInteractions = GetComponent<PlayerInteractions>();
         _playerPlatformHandler = GetComponent<PlayerPlatformHandler>();
         _damagePush = GetComponent<DamagePush>();
         //_oneWayChecker = GetComponentInChildren<OneWayChecker>();
@@ -114,6 +117,7 @@ public class PlayerController : MonoBehaviour
         _crouchAction = _inputActions.Player.Crouch;
         _sprintAction = _inputActions.Player.Sprint;
         _dashAction = _inputActions.Player.Dash;
+        _interactAction = _inputActions.Player.Interact;
 
         
         playerActionState = PlayerActionState.Default;
@@ -142,6 +146,7 @@ public class PlayerController : MonoBehaviour
         _attackAction.canceled += AttackReleased;
         _secondAttackAction.started += SecondAttack;
         _dashAction.performed += Dash;
+        _interactAction.performed += Interact;
 
 
     }
@@ -182,6 +187,7 @@ public class PlayerController : MonoBehaviour
         _attackAction.performed -= Attack;
         _secondAttackAction.canceled -= SecondAttack;
         _dashAction.performed -= Dash;
+        _interactAction.performed -= Interact;
 
     }
 
@@ -322,6 +328,19 @@ public class PlayerController : MonoBehaviour
         playerActionState = PlayerActionState.SecondAttack;
         AnimationSetActionId(11);
     }
+
+    private void Interact(InputAction.CallbackContext ctx)
+    {
+        print("pressed E");
+        if (_playerInteractions == null)
+        {
+            Debug.LogWarning("No PlayerInteraction component to the player attached");
+            return;
+        }
+
+        _playerInteractions.TryInteract(); 
+    }
+    
     
    /* private void SecondAttack(InputAction.CallbackContext ctx)
     {
