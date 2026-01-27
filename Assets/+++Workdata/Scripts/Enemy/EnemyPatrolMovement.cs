@@ -49,25 +49,26 @@ public class EnemyPatrolMovement : MonoBehaviour
     {
         if (enemyActionState != EnemyActionState.Default) return;
 
-        if (enemyMovementState == EnemyMovementState.Chase)
+
+        if (enemyMovementState == EnemyMovementState.Chase) //Chase Verhalten
         {
             if (_chaseTarget == null)
             {
-                Debug.LogError("Chase Target is null");
+                Debug.LogError("Chase Target ist null");
                 return;
-            }
-
+            } 
             if (Vector2.Distance(transform.position, _chaseTarget.position) < attackDistance)
             {
                 _enemyAnimation.AnimationSetAttack();
                 enemyActionState = EnemyActionState.Attack;
+                return;
             }
-
             if ((transform.position.x < _chaseTarget.position.x && _facingDirection == -1) ||
                 (transform.position.x > _chaseTarget.position.x && _facingDirection == 1))
             {
                 ChangeDirection();
             }
+
         }
         
         _rb.linearVelocityX = movementSpeed * _facingDirection;
@@ -118,7 +119,7 @@ public class EnemyPatrolMovement : MonoBehaviour
     {
         _facingDirection *= -1; //-1 * -1 = 1 * -1 = -1
         
-        transform.rotation = Quaternion.Euler(0, _facingDirection == 1 ? 0 : 180, 0);
+        transform.rotation = Quaternion.Euler(0, _facingDirection == -1 ? 0 : 180, 0);
     }
 
     #endregion
@@ -131,4 +132,5 @@ public class EnemyPatrolMovement : MonoBehaviour
     }
     
     #endregion
+   
 }

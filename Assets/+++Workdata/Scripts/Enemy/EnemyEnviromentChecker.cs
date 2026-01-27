@@ -59,4 +59,21 @@ public class EnemyEnviromentChecker : MonoBehaviour
         
         return hit.collider ;
     }
+    
+    #region Gizmos
+
+    private void OnDrawGizmos()
+    {
+        float direction = _enemyPatrolMovement ? _enemyPatrolMovement.FacingDirection : 1;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(wallCheck.position, 
+            wallCheck.position + Vector3.right * direction * wallCheckDistance);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(groundCheck.position, 
+            groundCheck.position + Vector3.down * groundCheckDistance);
+    }
+
+    #endregion
 }
