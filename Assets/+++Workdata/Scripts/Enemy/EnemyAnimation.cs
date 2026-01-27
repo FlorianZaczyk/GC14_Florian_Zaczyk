@@ -26,7 +26,7 @@ public class EnemyAnimation : MonoBehaviour
         AnimationSetActionID(10);
     }
 
-    private void AnimationSetMovementValue(float value)
+    public void AnimationSetMovementValue(float value)
     {
         _anim.SetFloat(HashMovementValue, value);
     }

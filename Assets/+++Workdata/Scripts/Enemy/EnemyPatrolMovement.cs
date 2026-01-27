@@ -127,7 +127,7 @@ public class EnemyPatrolMovement : MonoBehaviour
 
     private void UpdateAnimator()
     {
-      //  _enemyAnimation.AnimationSetMovementValue(Mathf.Abs(_rb.linearVelocityX));
+        _enemyAnimation.AnimationSetMovementValue(Mathf.Abs(_rb.linearVelocityX));
     }
     
     #endregion

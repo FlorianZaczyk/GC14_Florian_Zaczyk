@@ -312,7 +312,8 @@ public class PlayerController : MonoBehaviour
         if (playerActionState == PlayerActionState.Attack) return;
         playerActionState = PlayerActionState.Attack;
         AnimationSetActionId(10);
-        
+
+        _moveSpeed = 0f;
         _isHoldingMouse = true;
         _anim.SetBool(Hash_HoldingMouse,true);
     }
@@ -327,6 +328,19 @@ public class PlayerController : MonoBehaviour
         if (playerActionState == PlayerActionState.SecondAttack) return;
         playerActionState = PlayerActionState.SecondAttack;
         AnimationSetActionId(11);
+    }
+    
+    private void EndAttackEvent()
+    {
+        if (playerActionState != PlayerActionState.Default)
+        {
+            playerActionState = PlayerActionState.Default;
+        }
+
+        if (_moveSpeed == 0f)
+        {
+            _moveSpeed = 5f;
+        }
     }
 
     private void Interact(InputAction.CallbackContext ctx)
