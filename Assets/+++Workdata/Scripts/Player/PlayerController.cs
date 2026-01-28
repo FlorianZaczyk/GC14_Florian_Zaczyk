@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     private DamagePush _damagePush;
     private PlayerInteractions _playerInteractions;
     private InputAction _interactAction;
+    private EnemyInformation _enemyInformation;
 
     #endregion
 
@@ -104,6 +105,7 @@ public class PlayerController : MonoBehaviour
         _playerInteractions = GetComponent<PlayerInteractions>();
         _playerPlatformHandler = GetComponent<PlayerPlatformHandler>();
         _damagePush = GetComponent<DamagePush>();
+        _enemyInformation = GetComponent<EnemyInformation>();
         //_oneWayChecker = GetComponentInChildren<OneWayChecker>();
 
 
@@ -153,7 +155,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.linearVelocityX = _moveInput.x * _walkingSpeed;
+       // _rb.linearVelocityX = _moveInput.x * _walkingSpeed;
         //_rb.linearVelocityX = new Vector2(_moveInput.x * _walkingSpeed, _rb.linearVelocity.y);
 
         if (_groundCheck != null)
@@ -314,8 +316,11 @@ public class PlayerController : MonoBehaviour
         AnimationSetActionId(10);
 
         _moveSpeed = 0f;
+        _walkingSpeed = 0f;
         _isHoldingMouse = true;
         _anim.SetBool(Hash_HoldingMouse,true);
+
+        _enemyInformation.SetDamage(1);
     }
 
     void AttackReleased(InputAction.CallbackContext ctx)
@@ -337,10 +342,10 @@ public class PlayerController : MonoBehaviour
             playerActionState = PlayerActionState.Default;
         }
 
-        if (_moveSpeed == 0f)
-        {
+        
             _moveSpeed = 5f;
-        }
+            _walkingSpeed = 5f;
+        
     }
 
     private void Interact(InputAction.CallbackContext ctx)

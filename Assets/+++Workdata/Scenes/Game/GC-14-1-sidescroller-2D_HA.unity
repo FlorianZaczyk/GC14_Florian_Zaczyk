@@ -133059,8 +133059,8 @@ MonoBehaviour:
   playerActionState: 0
   playerDirectionState: 0
   _walkingSpeed: 9
-  _runningSpeed: 7
-  _dashSpeed: 25
+  _runningSpeed: 12
+  _dashSpeed: 14
   dashDuration: 0.15
   dashCooldown: 0.5
   _isSprinting: 0
@@ -134210,7 +134210,7 @@ MonoBehaviour:
   enemyActionState: 0
   isFacingRight: 0
   movementSpeed: 2
-  attackDistance: 1
+  attackDistance: 3
   _chaseTarget: {fileID: 0}
 --- !u!114 &1931448050
 MonoBehaviour:
