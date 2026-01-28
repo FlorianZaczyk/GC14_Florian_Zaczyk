@@ -7,6 +7,7 @@ public class MainMenu_UiManager : MonoBehaviour
     public GameObject mainMenuContainer;
     public GameObject loadMenuContainer;
     public GameObject optionsMenuContainer;
+    public GameObject creditsMenuContainer;
     public GameObject pauseMenuContainer;
     public GameObject audioOptionsMenuContainer;
     public GameObject gameOverScreenContainer;
@@ -48,6 +49,13 @@ public class MainMenu_UiManager : MonoBehaviour
         _currentMenu = optionsMenuContainer;
     }
     
+    public void OpenCreditsMenu()
+    {
+        _currentMenu.SetActive(false);
+        
+        creditsMenuContainer.SetActive(true);
+        _currentMenu = creditsMenuContainer;
+    }
     public void OpenAudioOptionsMenu()
     {
         _currentMenu.SetActive(false);

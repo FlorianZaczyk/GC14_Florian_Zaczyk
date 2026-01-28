@@ -132802,6 +132802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1527759814}
   - component: {fileID: 1527759815}
+  - component: {fileID: 1527759816}
   m_Layer: 0
   m_Name: AttackCollider
   m_TagString: Untagged
@@ -132876,6 +132877,19 @@ PolygonCollider2D:
       - {x: 0.7552518, y: -0.44363543}
       - {x: 1.3468871, y: 0.21005946}
   m_UseDelaunayMesh: 0
+--- !u!114 &1527759816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527759813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9b34b55d7e5dd4c9082d430c3babb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 25
 --- !u!1 &1558333749
 GameObject:
   m_ObjectHideFlags: 0

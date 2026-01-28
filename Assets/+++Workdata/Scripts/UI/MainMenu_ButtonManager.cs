@@ -19,6 +19,11 @@ public class MainMenu_ButtonManager : MonoBehaviour
     {
         uiManager.OpenOptionsMenu();
     }
+    
+    public void Button_OpenCreditsMenu()
+    {
+        uiManager.OpenCreditsMenu();
+    }
 
     public void OpenAudioOptionsMenu()
     {
