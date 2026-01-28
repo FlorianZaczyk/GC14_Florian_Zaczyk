@@ -132889,7 +132889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b34b55d7e5dd4c9082d430c3babb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 20
 --- !u!1 &1558333749
 GameObject:
   m_ObjectHideFlags: 0
@@ -132905,9 +132905,11 @@ GameObject:
   - component: {fileID: 1558333757}
   - component: {fileID: 1558333759}
   - component: {fileID: 1558333760}
-  - component: {fileID: 1558333761}
   - component: {fileID: 1558333762}
   - component: {fileID: 1558333763}
+  - component: {fileID: 1558333765}
+  - component: {fileID: 1558333766}
+  - component: {fileID: 1558333764}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -133118,7 +133120,100 @@ MonoBehaviour:
   maxHealth: 0
   healthBar: {fileID: 195154217}
   gameOverScreenContainer: {fileID: 1820228883}
---- !u!61 &1558333761
+--- !u!114 &1558333762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558333749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c1a49882a3e694cb2049454081f791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1558333763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558333749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f15b46aadd663c4782bf811a82f2994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactables: []
+--- !u!114 &1558333764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558333749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fba77208d85244bbb7a0fd0e5a763d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!60 &1558333765
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558333749}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.3913043, y: 0.02272727}
+    oldSize: {x: 4.3125, y: 2.75}
+    newSize: {x: 2.875, y: 1.8333334}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.4356848, y: 2.6122954}
+      - {x: -0.7918838, y: 1.9186989}
+      - {x: 0.4655162, y: 2.0370908}
+      - {x: 0.9661678, y: 1.6020573}
+      - {x: 1.3357228, y: 0.27126777}
+      - {x: 2.5232232, y: 0.77191955}
+      - {x: 2.2349691, y: 2.0455136}
+      - {x: 1.7689414, y: 3.097776}
+  m_UseDelaunayMesh: 0
+--- !u!61 &1558333766
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133148,11 +133243,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.006191522, y: 0.58789027}
+  m_Offset: {x: 0.9361644, y: 1.3125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.3913043, y: 0.02272727}
@@ -133162,33 +133257,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.39, y: 1.259114}
+  m_Size: {x: 3.8108845, y: 2.75}
   m_EdgeRadius: 0
---- !u!114 &1558333762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558333749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78c1a49882a3e694cb2049454081f791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1558333763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558333749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f15b46aadd663c4782bf811a82f2994, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactables: []
 --- !u!1 &1571245587
 GameObject:
   m_ObjectHideFlags: 0
@@ -134121,6 +134191,7 @@ MonoBehaviour:
   mainMenuContainer: {fileID: 0}
   loadMenuContainer: {fileID: 0}
   optionsMenuContainer: {fileID: 0}
+  creditsMenuContainer: {fileID: 0}
   pauseMenuContainer: {fileID: 2109975200}
   audioOptionsMenuContainer: {fileID: 0}
   gameOverScreenContainer: {fileID: 1820228883}
@@ -134254,7 +134325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b57e73f44d664d459df1aa6b692b961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMaxLifePoints: 5
+  enemyMaxLifePoints: 4
   _currentLifePoints: 0
 --- !u!50 &1931448051
 Rigidbody2D:
