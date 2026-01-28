@@ -333,6 +333,11 @@ public class PlayerController : MonoBehaviour
         if (playerActionState == PlayerActionState.SecondAttack) return;
         playerActionState = PlayerActionState.SecondAttack;
         AnimationSetActionId(11);
+        
+        _moveSpeed = 0f;
+        _walkingSpeed = 0f;
+        
+        _enemyInformation.SetDamage(1);
     }
     
     private void EndAttackEvent()
@@ -342,9 +347,8 @@ public class PlayerController : MonoBehaviour
             playerActionState = PlayerActionState.Default;
         }
 
-        
-            _moveSpeed = 5f;
-            _walkingSpeed = 5f;
+            _moveSpeed = 9f;
+            _walkingSpeed = 9f;
         
     }
 
