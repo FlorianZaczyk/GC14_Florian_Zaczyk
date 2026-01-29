@@ -286,6 +286,11 @@ public class PlayerController : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext ctx)
     {
+       /* if (playerActionState == PlayerActionState.Jumping) return;
+                playerActionState = PlayerActionState.Jumping;
+                AnimationSetActionID(4);
+        */
+       
         if (_isGrounded)
         {
             //_rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
