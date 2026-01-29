@@ -10,6 +10,13 @@ public class Health : MonoBehaviour
    public float maxHealth;
    public Image healthBar;
    public GameObject gameOverScreenContainer;
+   private PlayerController _playerController;
+
+
+   private void Awake()
+   {
+      _playerController = GetComponent<PlayerController>();
+   }
 
    void Start()
    {
@@ -22,8 +29,9 @@ public class Health : MonoBehaviour
 
       if (healthBar.fillAmount <= 0)
       {
-         Destroy(gameObject);
-         OpenGameOverScreen();
+         _playerController.Death();
+         //Destroy(gameObject);
+         //OpenGameOverScreen();
          
       }
    }

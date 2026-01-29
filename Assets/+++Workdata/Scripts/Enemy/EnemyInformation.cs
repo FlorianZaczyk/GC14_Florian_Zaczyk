@@ -37,6 +37,7 @@ public class EnemyInformation : MonoBehaviour
             _enemyPatrolMovement.SetActionState(2);
             _enemyPatrolMovement.SetMovementState(0);
             _enemyPatrolMovement.enabled = false;
+           // Destroy(gameObject, 2);
         }
 
         _colorSpriteSetter.ColorObject();

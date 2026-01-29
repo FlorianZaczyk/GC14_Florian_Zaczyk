@@ -43,5 +43,9 @@ public class EnemyAnimation : MonoBehaviour
         _enemyPatrolMovement.SetActionState(0);
     }
    
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
     
 }

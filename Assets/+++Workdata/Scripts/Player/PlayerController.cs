@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public enum PlayerMovementState { Idle, Move }
     public PlayerMovementState playerMovementState;
 
-    public enum PlayerActionState { Default, Attack, SecondAttack, Jumping, Dashing, Climbing, JumpAttack }
+    public enum PlayerActionState { Default, Attack, SecondAttack, Jumping, Dashing, Climbing, JumpAttack, Death }
     public PlayerActionState playerActionState;
     
     public enum PlayerDirectionState{Right, Left}
@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
         _crouchAction = _inputActions.Player.Crouch;
         _sprintAction = _inputActions.Player.Sprint;
         _dashAction = _inputActions.Player.Dash;
+        
         _interactAction = _inputActions.Player.Interact;
 
         
@@ -313,7 +314,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerActionState == PlayerActionState.Attack) return;
         playerActionState = PlayerActionState.Attack;
-        AnimationSetActionId(10);
+        AnimationSetActionID(10);
 
         _moveSpeed = 0f;
         _walkingSpeed = 0f;
@@ -332,7 +333,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerActionState == PlayerActionState.SecondAttack) return;
         playerActionState = PlayerActionState.SecondAttack;
-        AnimationSetActionId(11);
+        AnimationSetActionID(11);
         
         _moveSpeed = 0f;
         _walkingSpeed = 0f;
@@ -350,6 +351,16 @@ public class PlayerController : MonoBehaviour
             _moveSpeed = 9f;
             _walkingSpeed = 9f;
         
+    }
+    
+    
+    public void Death()
+    {
+        if (playerActionState == PlayerActionState.Death) return;
+        
+            playerActionState = PlayerActionState.Death;
+            AnimationSetActionID(100);
+
     }
 
     private void Interact(InputAction.CallbackContext ctx)
@@ -389,7 +400,7 @@ public class PlayerController : MonoBehaviour
 
         #region Animation Methods
 
-        private void AnimationSetActionId (int id)
+        private void AnimationSetActionID (int id)
         {
   
             _anim.SetInteger(Hash_Actionid, id);
