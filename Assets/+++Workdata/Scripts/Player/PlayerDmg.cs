@@ -7,7 +7,8 @@ public class PlayerDmg : MonoBehaviour
         {
             if (other.CompareTag("Enemy"))
             {
-                other.gameObject.GetComponent<EnemyInformation>()._currentLifePoints  -= damage;
+                //other.gameObject.GetComponent<EnemyInformation>()._currentLifePoints  -= damage;
+                other.gameObject.GetComponent<EnemyInformation>().SetDamage(damage);
             }
         }
 }

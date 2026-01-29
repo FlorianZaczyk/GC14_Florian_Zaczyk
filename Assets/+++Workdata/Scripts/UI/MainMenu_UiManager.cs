@@ -21,7 +21,7 @@ public class MainMenu_UiManager : MonoBehaviour
     {
         _currentMenu = mainMenuContainer;
         soundOn = false;
-        uiAudioSource.mute = soundOn;
+       // uiAudioSource.mute = soundOn;
     }
 
     

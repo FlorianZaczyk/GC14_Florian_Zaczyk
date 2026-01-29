@@ -110,6 +110,12 @@ public class EnemyPatrolMovement : MonoBehaviour
         enemyActionState = EnemyActionState.Default;
     }
     
+    public void DeathEvent()
+    {
+        SetMovementState(0);
+        SetActionState(2);
+        
+    }
     #endregion
     
     

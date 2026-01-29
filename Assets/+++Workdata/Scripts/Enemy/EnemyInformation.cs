@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyInformation : MonoBehaviour
@@ -9,33 +10,37 @@ public class EnemyInformation : MonoBehaviour
     private ColorSpriteSetter _colorSpriteSetter;
     private Collider2D _coll;
     private Rigidbody2D _rb;
-    
+    private EnemyAnimation _enemyAnimation;
     private EnemyPatrolMovement _enemyPatrolMovement;
 
     private void Awake()
     {
         _currentLifePoints = enemyMaxLifePoints;
 
+        _enemyAnimation = GetComponentInChildren<EnemyAnimation>();
         _colorSpriteSetter = GetComponent<ColorSpriteSetter>();
         _coll = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
-        _enemyPatrolMovement = GetComponent<EnemyPatrolMovement>();
+        _enemyPatrolMovement = GetComponentInChildren<EnemyPatrolMovement>();
+        
     }
 
     public void SetDamage(int dmg)
     {
         _currentLifePoints -= dmg;
 
-        if (_currentLifePoints < 1)
+        if (_currentLifePoints < 0)
         {
             _coll.enabled = false;
             _rb.bodyType = RigidbodyType2D.Kinematic;
-            GetComponentInChildren<EnemyAnimation>().AnimationEnemyDeath();
-            EnemyPatrolMovement enemyPatrol = GetComponentInChildren<EnemyPatrolMovement>();
+            _enemyAnimation.AnimationEnemyDeath();
             _enemyPatrolMovement.SetActionState(2);
-            enemyPatrol.enabled = false;
+            _enemyPatrolMovement.SetMovementState(0);
+            _enemyPatrolMovement.enabled = false;
         }
 
         _colorSpriteSetter.ColorObject();
     }
+
+
 }
