@@ -9,6 +9,8 @@ public class EnemyInformation : MonoBehaviour
     private ColorSpriteSetter _colorSpriteSetter;
     private Collider2D _coll;
     private Rigidbody2D _rb;
+    
+    private EnemyPatrolMovement _enemyPatrolMovement;
 
     private void Awake()
     {
@@ -17,6 +19,7 @@ public class EnemyInformation : MonoBehaviour
         _colorSpriteSetter = GetComponent<ColorSpriteSetter>();
         _coll = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
+        _enemyPatrolMovement = GetComponent<EnemyPatrolMovement>();
     }
 
     public void SetDamage(int dmg)
@@ -29,7 +32,7 @@ public class EnemyInformation : MonoBehaviour
             _rb.bodyType = RigidbodyType2D.Kinematic;
             GetComponentInChildren<EnemyAnimation>().AnimationEnemyDeath();
             EnemyPatrolMovement enemyPatrol = GetComponentInChildren<EnemyPatrolMovement>();
-            GetComponentInChildren<EnemyPatrolMovement>().SetActionState(2);
+            _enemyPatrolMovement.SetActionState(2);
             enemyPatrol.enabled = false;
         }
 
