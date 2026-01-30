@@ -29,7 +29,7 @@ public class EnemyInformation : MonoBehaviour
     {
         _currentLifePoints -= dmg;
 
-        if (_currentLifePoints < 0)
+        if (_currentLifePoints <= 0)
         {
             _coll.enabled = false;
             _rb.bodyType = RigidbodyType2D.Kinematic;
