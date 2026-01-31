@@ -10,6 +10,7 @@ public class TriggerEventsCC : MonoBehaviour
 
     private CinemachineCamera cm;
     public AudioSource _audio;
+    public AudioSource _audio2;
 
     public void Start()
     {
@@ -22,6 +23,7 @@ public class TriggerEventsCC : MonoBehaviour
         {
             cm.Priority.Value = 5;
             _audio.Play();
+            _audio2.Play();
         }
         
         
@@ -34,6 +36,7 @@ public class TriggerEventsCC : MonoBehaviour
         {
             cm.Priority.Value = 0;
             _audio.Stop();
+            _audio2.Play();
         }
     
     }

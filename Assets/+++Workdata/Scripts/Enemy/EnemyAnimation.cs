@@ -21,6 +21,11 @@ public class EnemyAnimation : MonoBehaviour
     {
         AnimationSetActionID(100);
     }
+    
+    public void AnimationEnemyDamageTaken()
+    {
+        AnimationSetActionID(90);
+    }
 
     public void AnimationSetAttack()
     {

@@ -373,12 +373,14 @@ public class PlayerController : MonoBehaviour
         print("pressed E");
         if (_playerInteractions == null)
         {
-            Debug.LogWarning("No PlayerInteraction component to the player attached");
+            //Debug.LogWarning("No PlayerInteraction component to the player attached");
             return;
         }
 
         _playerInteractions.TryInteract(); 
+        
     }
+    
     
     
    /* private void SecondAttack(InputAction.CallbackContext ctx)

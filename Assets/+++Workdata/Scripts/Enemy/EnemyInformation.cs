@@ -29,6 +29,8 @@ public class EnemyInformation : MonoBehaviour
     {
         _currentLifePoints -= dmg;
 
+        _enemyAnimation.AnimationEnemyDamageTaken();
+        
         if (_currentLifePoints <= 0)
         {
             _coll.enabled = false;

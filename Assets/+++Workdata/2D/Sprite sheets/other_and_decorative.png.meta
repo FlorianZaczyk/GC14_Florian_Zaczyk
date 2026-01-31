@@ -2524,7 +2524,7 @@ TextureImporter:
       name: other_and_decorative_109
       rect:
         serializedVersion: 2
-        x: 240
+        x: 241
         y: 512
         width: 16
         height: 16
@@ -2546,7 +2546,7 @@ TextureImporter:
       name: other_and_decorative_110
       rect:
         serializedVersion: 2
-        x: 256
+        x: 257
         y: 512
         width: 16
         height: 16
