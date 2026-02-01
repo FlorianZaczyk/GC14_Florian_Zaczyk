@@ -1,31 +1,23 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     public GameObject pauseMenuContainer;
+    private PlayerController _playerController;
 
     private bool _isPaused;
-    
 
-    private void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (_isPaused)
-                ResumeGame();
-            else
-            {
-                OpenPauseMenu(); 
-            }
-
-        }
-        
+        _playerController = GetComponent<PlayerController>();
+        _isPaused = false;
     }
 
-    private void OpenPauseMenu()
+    public void OpenPauseMenu()
     {
         _isPaused = !_isPaused;
         pauseMenuContainer.SetActive(true);

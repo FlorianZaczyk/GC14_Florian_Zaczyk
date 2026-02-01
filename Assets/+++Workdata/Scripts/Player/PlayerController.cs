@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     private bool _canDash = true;
     private bool _isGrounded;
     private bool _isHoldingMouse;
+    private bool _isPaused;
+
 
      //private OneWayChecker _oneWayChecker;
     
@@ -69,6 +71,7 @@ public class PlayerController : MonoBehaviour
     private EnemyInformation _enemyInformation;
     private EnemyBossInformation1 _enemyBossInformation;
     private Health _health;
+    private PauseMenu _pauseMenu;
 
 
     #endregion
@@ -87,6 +90,7 @@ public class PlayerController : MonoBehaviour
     private InputAction _secondAttackAction;
     private InputAction _crouchAction;
     private InputAction _sprintAction;
+    private InputAction _pausingAction;
 
 
     #endregion
@@ -111,6 +115,9 @@ public class PlayerController : MonoBehaviour
         _enemyInformation = GetComponent<EnemyInformation>();
         _enemyBossInformation = GetComponent<EnemyBossInformation1>();
         _health = GetComponent<Health>();
+        _pauseMenu = GetComponent<PauseMenu>();
+        
+        
 
         //_oneWayChecker = GetComponentInChildren<OneWayChecker>();
 
@@ -125,6 +132,7 @@ public class PlayerController : MonoBehaviour
         _crouchAction = _inputActions.Player.Crouch;
         _sprintAction = _inputActions.Player.Sprint;
         _dashAction = _inputActions.Player.Dash;
+        _pausingAction = _inputActions.UI.Pause;
         
         _interactAction = _inputActions.Player.Interact;
 
@@ -156,6 +164,7 @@ public class PlayerController : MonoBehaviour
         _secondAttackAction.started += SecondAttack;
         _dashAction.performed += Dash;
         _interactAction.performed += Interact;
+        _pausingAction.performed += Pause;
 
 
     }
@@ -197,6 +206,7 @@ public class PlayerController : MonoBehaviour
         _secondAttackAction.canceled -= SecondAttack;
         _dashAction.performed -= Dash;
         _interactAction.performed -= Interact;
+        _pausingAction.performed -= Pause;
 
     }
 
@@ -378,6 +388,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    public void Pause(InputAction.CallbackContext ctx)
+    {
+        
+        if (_isPaused)
+            _pauseMenu.ResumeGame();
+        else
+        {
+            _pauseMenu.OpenPauseMenu(); 
+        }
+    }
     private void Interact(InputAction.CallbackContext ctx)
     {
         print("pressed E");
