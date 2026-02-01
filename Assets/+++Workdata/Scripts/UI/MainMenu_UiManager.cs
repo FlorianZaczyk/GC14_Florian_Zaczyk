@@ -16,6 +16,7 @@ public class MainMenu_UiManager : MonoBehaviour
     
     public bool soundOn = true;
     public AudioSource uiAudioSource;
+    public AudioSource musicAudioSource;
 
 
     private void Awake()
@@ -94,4 +95,11 @@ public class MainMenu_UiManager : MonoBehaviour
         soundOn = !soundOn;
         uiAudioSource.mute = soundOn;
     }
+    
+    public void ToggleMusic()
+    {
+        soundOn = !soundOn;
+        musicAudioSource.mute = soundOn;
+    }
+    
 }
