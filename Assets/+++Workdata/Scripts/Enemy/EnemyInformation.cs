@@ -34,7 +34,6 @@ public class EnemyInformation : MonoBehaviour
 
         _enemyAnimation.AnimationEnemyDamageTaken();
         
-        bossHealthBar.fillAmount = Mathf.Clamp(_currentLifePoints / enemyMaxLifePoints, 0 ,1);
         if (_currentLifePoints <= 0)
         {
             _coll.enabled = false;
