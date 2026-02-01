@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MainMenu_UiManager : MonoBehaviour
 {
+    public GameObject winningContainer;
     public GameObject mainMenuContainer;
     public GameObject loadMenuContainer;
     public GameObject optionsMenuContainer;
@@ -79,6 +80,15 @@ public class MainMenu_UiManager : MonoBehaviour
         gameOverScreenContainer.SetActive(true);
         _currentMenu = gameOverScreenContainer;
     }
+    
+    public void OpenWinningScreen()
+    {
+        _currentMenu.SetActive(false);
+        
+        winningContainer.SetActive(true);
+        _currentMenu = winningContainer;
+    }
+    
     public void ToggleSound()
     {
         soundOn = !soundOn;

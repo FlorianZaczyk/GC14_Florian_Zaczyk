@@ -30,8 +30,7 @@ public class Health : MonoBehaviour
       if (healthBar.fillAmount <= 0)
       {
          _playerController.Death();
-         //Destroy(gameObject);
-         //OpenGameOverScreen();
+         
          
       }
    }

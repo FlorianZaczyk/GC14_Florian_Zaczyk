@@ -67,6 +67,9 @@ public class PlayerController : MonoBehaviour
     private PlayerInteractions _playerInteractions;
     private InputAction _interactAction;
     private EnemyInformation _enemyInformation;
+    private EnemyBossInformation1 _enemyBossInformation;
+    private Health _health;
+
 
     #endregion
 
@@ -106,6 +109,9 @@ public class PlayerController : MonoBehaviour
         _playerPlatformHandler = GetComponent<PlayerPlatformHandler>();
         _damagePush = GetComponent<DamagePush>();
         _enemyInformation = GetComponent<EnemyInformation>();
+        _enemyBossInformation = GetComponent<EnemyBossInformation1>();
+        _health = GetComponent<Health>();
+
         //_oneWayChecker = GetComponentInChildren<OneWayChecker>();
 
 
@@ -327,6 +333,8 @@ public class PlayerController : MonoBehaviour
         _anim.SetBool(Hash_HoldingMouse,true);
 
         _enemyInformation.SetDamage(1);
+        _enemyBossInformation.SetDamage(1);
+
     }
 
     void AttackReleased(InputAction.CallbackContext ctx)
@@ -344,6 +352,8 @@ public class PlayerController : MonoBehaviour
         _walkingSpeed = 0f;
         
         _enemyInformation.SetDamage(1);
+        _enemyBossInformation.SetDamage(1);
+
     }
     
     private void EndAttackEvent()

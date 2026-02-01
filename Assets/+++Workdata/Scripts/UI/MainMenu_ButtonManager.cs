@@ -39,7 +39,11 @@ public class MainMenu_ButtonManager : MonoBehaviour
     {
         uiManager.OpenGameOverScreen();
     }
-    
+
+    public void OpenWinningScreen()
+    {
+        uiManager.OpenWinningScreen();
+    }
     public void Button_LoadSceneByName(string sceneName)
     {
         sceneLoaderManager.LoadScene(sceneName);

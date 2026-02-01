@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class EnemyInformation : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class EnemyInformation : MonoBehaviour
     private Rigidbody2D _rb;
     private EnemyAnimation _enemyAnimation;
     private EnemyPatrolMovement _enemyPatrolMovement;
+    public Image bossHealthBar;
 
     private void Awake()
     {
@@ -31,6 +34,7 @@ public class EnemyInformation : MonoBehaviour
 
         _enemyAnimation.AnimationEnemyDamageTaken();
         
+        bossHealthBar.fillAmount = Mathf.Clamp(_currentLifePoints / enemyMaxLifePoints, 0 ,1);
         if (_currentLifePoints <= 0)
         {
             _coll.enabled = false;
@@ -44,6 +48,5 @@ public class EnemyInformation : MonoBehaviour
 
         _colorSpriteSetter.ColorObject();
     }
-
 
 }

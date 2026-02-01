@@ -6,7 +6,9 @@ public class EnemyAnimation : MonoBehaviour
     public static readonly int HashActionTrigger = Animator.StringToHash("ActionTrigger");
     public static readonly int HashActionID = Animator.StringToHash("ActionID");
     private EnemyPatrolMovement _enemyPatrolMovement;
-    
+    public GameObject winningScreenContainer;
+    public AudioSource DeathAudio;
+    private bool _isPaused;
     
     private Animator _anim;
 
@@ -20,7 +22,9 @@ public class EnemyAnimation : MonoBehaviour
     public void AnimationEnemyDeath()
     {
         AnimationSetActionID(100);
+        DeathAudio.Play();
     }
+    
     
     public void AnimationEnemyDamageTaken()
     {
@@ -51,6 +55,16 @@ public class EnemyAnimation : MonoBehaviour
     public void Destroy()
     {
         Destroy(gameObject);
+    }
+    
+    private void WinningScreen()
+    {
+        _isPaused = !_isPaused;
+        winningScreenContainer.SetActive(true);
+        Time.timeScale = _isPaused ? 0 : 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        DeathAudio.Pause();
     }
     
 }
